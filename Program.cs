@@ -12,13 +12,16 @@ namespace ProblemsUsingGenerics
             switch (option)
             {
                 case 1:
-                    RunMaxNumberFinder<int>();
+                    TestMaxNumberFinderInt();
                     break;
                 case 2:
-                    RunMaxNumberFinder<float>();
+                    TestMaxNumberFinderFloat();
                     break;
                 case 3:
-                    RunMaxNumberFinder<string>();
+                    TestMaxNumberFinderString();
+                    break;
+                case 4:
+                    TestMaxNumberFinderCustomClass();
                     break;
                 default:
                     Console.WriteLine("Please Enter a Valid Index No.");
@@ -27,19 +30,38 @@ namespace ProblemsUsingGenerics
             Console.ReadLine();
         }
 
-        public static void RunMaxNumberFinder<T>() where T : IComparable<T>
+        public static void TestMaxNumberFinderInt()
         {
-            Console.WriteLine($"Running MaxNumberFinder for type {typeof(T).Name}");
+            MaxNumberFinder<int> maxNumberFinder = new MaxNumberFinder<int>(10, 5, 7);
+            int result = maxNumberFinder.TestMaximum();
+            Console.WriteLine("Test case 1 (Integers): " + result); // Output: 10
+        }
 
-            T test1Max = MaxNumberFinder.FindMax<T>(Converter.ConvertToT<T>(10), Converter.ConvertToT<T>(5), Converter.ConvertToT<T>(7));
-            Console.WriteLine("Test case 1: " + test1Max); // Output: 10
+        public static void TestMaxNumberFinderFloat()
+        {
+            MaxNumberFinder<float> maxNumberFinder = new MaxNumberFinder<float>(10.5f, 5.2f, 7.8f);
+            float result = maxNumberFinder.TestMaximum();
+            Console.WriteLine("Test case 1 (Floats): " + result); // Output: 10.5
+        }
 
-            T test2Max = MaxNumberFinder.FindMax<T>(Converter.ConvertToT<T>(3), Converter.ConvertToT<T>(8), Converter.ConvertToT<T>(2));
-            Console.WriteLine("Test case 2: " + test2Max); // Output: 8
+        public static void TestMaxNumberFinderString()
+        {
+            MaxNumberFinder<string> maxNumberFinder = new MaxNumberFinder<string>("Apple", "Peach", "Banana");
+            string result = maxNumberFinder.TestMaximum();
+            Console.WriteLine("Test case 1 (Strings): " + result); // Output: "Peach"
+        }
 
-            T test3Max = MaxNumberFinder.FindMax<T>(Converter.ConvertToT<T>(4), Converter.ConvertToT<T>(6), Converter.ConvertToT<T>(12));
-            Console.WriteLine("Test case 3: " + test3Max); // Output: 12
+        public static void TestMaxNumberFinderCustomClass()
+        {
+            // Defining a custom class that implements IComparable
+            // Example: a custom class for Employee
+            Employee emp1 = new Employee("John", 10001);
+            Employee emp2 = new Employee("Jane", 10002);
+            Employee emp3 = new Employee("Mike", 10003);
+
+            MaxNumberFinder<Employee> maxNumberFinder = new MaxNumberFinder<Employee>(emp1, emp2, emp3);
+            Employee result = maxNumberFinder.TestMaximum();
+            Console.WriteLine("Test case 1 (Custom Class): " + result.Name); // Output: "Mike"
         }
     }
 }
-

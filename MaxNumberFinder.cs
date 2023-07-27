@@ -2,9 +2,25 @@
 
 namespace ProblemsUsingGenerics
 {
-    internal static class MaxNumberFinder
+    internal class MaxNumberFinder<T> where T : IComparable<T>
     {
-        public static T FindMax<T>(T a, T b, T c) where T : IComparable<T>
+        private T a;
+        private T b;
+        private T c;
+
+        public MaxNumberFinder(T a, T b, T c)
+        {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+        }
+
+        public T TestMaximum()
+        {
+            return MaxNumberFinder<T>.FindMax(a, b, c);
+        }
+
+        private static T FindMax(T a, T b, T c)
         {
             T max = a;
             if (b.CompareTo(max) > 0)
