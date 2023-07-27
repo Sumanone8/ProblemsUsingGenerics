@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProblemUsingGeneric
+namespace ProblemsUsingGenerics
 {
     internal class Program
     {
@@ -12,13 +12,13 @@ namespace ProblemUsingGeneric
             switch (option)
             {
                 case 1:
-                    MaxNumberFinder.RunMaxNumberFinder();
+                    RunMaxNumberFinder<int>();
                     break;
                 case 2:
-                    MaxNumberFinder.RunMaxNumberFinderFloat();
+                    RunMaxNumberFinder<float>();
                     break;
                 case 3:
-                    MaxNumberFinder.RunMaxNumberFinderString();
+                    RunMaxNumberFinder<string>();
                     break;
                 default:
                     Console.WriteLine("Please Enter a Valid Index No.");
@@ -26,5 +26,20 @@ namespace ProblemUsingGeneric
             }
             Console.ReadLine();
         }
+
+        public static void RunMaxNumberFinder<T>() where T : IComparable<T>
+        {
+            Console.WriteLine($"Running MaxNumberFinder for type {typeof(T).Name}");
+
+            T test1Max = MaxNumberFinder.FindMax<T>(Converter.ConvertToT<T>(10), Converter.ConvertToT<T>(5), Converter.ConvertToT<T>(7));
+            Console.WriteLine("Test case 1: " + test1Max); // Output: 10
+
+            T test2Max = MaxNumberFinder.FindMax<T>(Converter.ConvertToT<T>(3), Converter.ConvertToT<T>(8), Converter.ConvertToT<T>(2));
+            Console.WriteLine("Test case 2: " + test2Max); // Output: 8
+
+            T test3Max = MaxNumberFinder.FindMax<T>(Converter.ConvertToT<T>(4), Converter.ConvertToT<T>(6), Converter.ConvertToT<T>(12));
+            Console.WriteLine("Test case 3: " + test3Max); // Output: 12
+        }
     }
 }
+
