@@ -34,21 +34,21 @@ namespace ProblemsUsingGenerics
         {
             MaxNumberFinder<int> maxNumberFinder = new MaxNumberFinder<int>(10, 5, 7, 12, 2, 20);
             int result = maxNumberFinder.TestMaximum();
-            Console.WriteLine("Test case 1 (Integers): " + result); // Output: 20
+            // Output: The maximum value is: 20
         }
 
         public static void TestMaxNumberFinderFloat()
         {
             MaxNumberFinder<float> maxNumberFinder = new MaxNumberFinder<float>(10.5f, 5.2f, 7.8f, 11.1f, 3.3f);
             float result = maxNumberFinder.TestMaximum();
-            Console.WriteLine("Test case 1 (Floats): " + result); // Output: 11.1
+            // Output: The maximum value is: 11.1
         }
 
         public static void TestMaxNumberFinderString()
         {
             MaxNumberFinder<string> maxNumberFinder = new MaxNumberFinder<string>("Apple", "Peach", "Banana", "Orange");
             string result = maxNumberFinder.TestMaximum();
-            Console.WriteLine("Test case 1 (Strings): " + result); // Output: "Peach"
+            // Output: The maximum value is: Peach
         }
 
         public static void TestMaxNumberFinderCustomClass()
@@ -62,7 +62,7 @@ namespace ProblemsUsingGenerics
 
             MaxNumberFinder<Employee> maxNumberFinder = new MaxNumberFinder<Employee>(emp1, emp2, emp3, emp4);
             Employee result = maxNumberFinder.TestMaximum();
-            Console.WriteLine("Test case 1 (Custom Class): " + result.Name); // Output: "Mike"
+            // Output: The maximum value is: Mike
         }
     }
 }

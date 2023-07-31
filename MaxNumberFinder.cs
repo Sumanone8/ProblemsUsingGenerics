@@ -13,7 +13,9 @@ namespace ProblemsUsingGenerics
 
         public T TestMaximum()
         {
-            return FindMax(values);
+            T max = FindMax(values);
+            PrintMax(max);
+            return max;
         }
 
         private static T FindMax(params T[] values)
@@ -25,6 +27,11 @@ namespace ProblemsUsingGenerics
                     max = values[i];
             }
             return max;
+        }
+
+        private static void PrintMax(T max)
+        {
+            Console.WriteLine("The maximum value is: " + max);
         }
     }
 }
