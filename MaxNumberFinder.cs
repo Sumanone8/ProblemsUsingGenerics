@@ -4,31 +4,26 @@ namespace ProblemsUsingGenerics
 {
     internal class MaxNumberFinder<T> where T : IComparable<T>
     {
-        private T a;
-        private T b;
-        private T c;
+        private T[] values;
 
-        public MaxNumberFinder(T a, T b, T c)
+        public MaxNumberFinder(params T[] values)
         {
-            this.a = a;
-            this.b = b;
-            this.c = c;
+            this.values = values;
         }
 
         public T TestMaximum()
         {
-            return MaxNumberFinder<T>.FindMax(a, b, c);
+            return FindMax(values);
         }
 
-        private static T FindMax(T a, T b, T c)
+        private static T FindMax(params T[] values)
         {
-            T max = a;
-            if (b.CompareTo(max) > 0)
-                max = b;
-
-            if (c.CompareTo(max) > 0)
-                max = c;
-
+            T max = values[0];
+            for (int i = 1; i < values.Length; i++)
+            {
+                if (values[i].CompareTo(max) > 0)
+                    max = values[i];
+            }
             return max;
         }
     }
